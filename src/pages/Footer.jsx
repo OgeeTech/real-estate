@@ -1,63 +1,34 @@
 const Footer = () => {
   return (
-    <footer className="px-6 md:px-16 lg:px-24 xl:px-32 pt-14 w-full text-slate-500 bg-white dark:bg-slate-950">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12 border-b border-slate-200/60 dark:border-slate-800/60 pb-10">
-        {/* Logo & Description */}
-        <div className="max-w-sm">
-          <div className="flex items-center gap-2">
-            <div className="w-12 h-12 rounded-lg overflow-hidden">
+    <footer className="bg-white dark:bg-slate-950 px-6 md:px-16 lg:px-24 xl:px-32 pt-12 w-full text-slate-500">
+      {/* TOP SECTION */}
+      <div className="flex flex-col gap-12 border-b border-slate-200 dark:border-slate-800 pb-10">
+        {/* GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* LOGO & DESCRIPTION */}
+          <div className="space-y-5">
+            <div className="flex items-center gap-2">
               <img
                 src="/img/logo1.png"
-                alt="Buildvest Logo"
-                className="w-full h-full object-cover"
+                alt="Buildvest"
+                className="w-15 h-10 object-contain"
               />
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="text-lg font-black tracking-tight text-slate-900 dark:text-white uppercase italic">
-                Build
-                <span className="text-blue-600">vest</span>
-              </span>
-              <span className="text-[10px] font-semibold tracking-widest text-slate-400 uppercase">
-                Real Estate
+              <span className="text-lg font-black text-slate-900 dark:text-white tracking-tight">
+                Build<span className="text-blue-600">vest</span>
               </span>
             </div>
+
+            <p className="text-sm leading-relaxed max-w-sm">
+              Buildvest enables smart group ownership of high-value real estate,
+              making property investment accessible, transparent, and secure.
+            </p>
           </div>
 
-          <p className="mt-5 text-sm leading-relaxed">
-            Buildvest helps you discover, compare, and invest in verified
-            properties with confidence — faster, smarter, and securely.
-          </p>
-        </div>
-
-        {/* Newsletter / Investors Community */}
-        <div className="flex flex-col gap-4 max-w-sm">
-          <h2 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">
-            Join Our Investors Community
-          </h2>
-          <p className="text-sm text-slate-500 dark:text-slate-400">
-            Subscribe to get updates, investment insights, and property news.
-          </p>
-          <form className="flex gap-2 mt-2">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
-
-        {/* Links */}
-        <div className="flex flex-col sm:flex-row gap-16 md:gap-24">
+          {/* COMPANY LINKS */}
           <div>
-            <h2 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">
               Company
-            </h2>
+            </h3>
             <ul className="space-y-3 text-sm">
               <li>
                 <a href="#" className="hover:text-blue-600">
@@ -66,7 +37,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#" className="hover:text-blue-600">
-                  About Us
+                  Features
                 </a>
               </li>
               <li>
@@ -76,28 +47,47 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#" className="hover:text-blue-600">
-                  Privacy Policy
+                  FAQ
                 </a>
               </li>
             </ul>
           </div>
 
-          <div>
-            <h2 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">
-              Get in Touch
-            </h2>
-            <div className="space-y-3 text-sm">
-              <p>+234 810 828 4356</p>
-              <p>support@buildvest.com</p>
-            </div>
+          {/* INVESTOR COMMUNITY */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
+              Join our investors community
+            </h3>
+
+            <p className="text-sm">
+              Get early access to new properties and exclusive updates.
+            </p>
+
+            <form className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button
+                type="submit"
+                className="px-6 py-3 rounded-xl bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition"
+              >
+                Join
+              </button>
+            </form>
           </div>
         </div>
       </div>
 
-      {/* Bottom */}
-      <p className="pt-6 pb-8 text-center text-xs md:text-sm text-slate-400">
-        © 2026 Buildvest. All rights reserved.
-      </p>
+      {/* BOTTOM */}
+      <div className="py-6 text-center text-xs md:text-sm">
+        © 2026{" "}
+        <span className="font-semibold text-slate-700 dark:text-slate-300">
+          Buildvest
+        </span>
+        . All rights reserved.
+      </div>
     </footer>
   );
 };
