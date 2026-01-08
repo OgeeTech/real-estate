@@ -33,8 +33,8 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
             <div className="relative">
               <div className="w-25 h-20 rounded-xl overflow-hidden group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                 <img
-                  src="/src/assets/images/logo1.png"
-                  alt="PropShare Logo"
+                  src="/img/logo1.png"
+                  alt="company Logo"
                   className="w-full h-full object-cover"
                 />
               </div>

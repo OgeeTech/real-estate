@@ -138,7 +138,7 @@ const Hero = () => {
           <div className="absolute -inset-1 bg-gradient-to-r from-primary to-cyan-400 rounded-[2rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
           <div className="relative bg-white dark:bg-slate-900 rounded-[2rem] overflow-hidden shadow-2xl border-[10px] border-white dark:border-slate-900">
             <img
-              src="/src/assets/images/hero2.jpeg"
+              src="/img/hero2.jpeg"
               alt="Premium Property"
               className="w-full h-auto object-cover transform transition duration-700 hover:scale-110"
             />

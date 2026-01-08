@@ -7,7 +7,7 @@ const Footer = () => {
           <div className="flex items-center gap-2">
             <div className="w-12 h-12 rounded-lg overflow-hidden">
               <img
-                src="/src/assets/images/logo1.png"
+                src="/img/logo1.png"
                 alt="Buildvest Logo"
                 className="w-full h-full object-cover"
               />

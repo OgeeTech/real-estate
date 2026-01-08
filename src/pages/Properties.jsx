@@ -53,7 +53,7 @@ const Properties = () => {
       featured: true,
       rating: 4.8,
       investors: 26,
-      image: "/src/assets/images/1.jpeg",
+      image: "/img/1.jpeg",
       tags: ["Prime Area", "1200+ sqm", "Secure Estate"],
     },
     {
@@ -72,7 +72,7 @@ const Properties = () => {
       featured: true,
       rating: 4.9,
       investors: 34,
-      image: "/src/assets/images/7.jpeg",
+      image: "/img/7.jpeg",
       tags: ["Waterfront", "Luxury", "High ROI"],
     },
     {
@@ -91,7 +91,7 @@ const Properties = () => {
       featured: false,
       rating: 4.7,
       investors: 21,
-      image: "/src/assets/images/3.jpeg",
+      image: "/img/3.jpeg",
       tags: ["Smart Home", "Secure", "Capital City"],
     },
     {
@@ -110,7 +110,7 @@ const Properties = () => {
       featured: true,
       rating: 4.6,
       investors: 28,
-      image: "/src/assets/images/4.jpeg",
+      image: "/img/4.jpeg",
       tags: ["High-rise", "Premium", "City View"],
     },
     {
@@ -129,7 +129,7 @@ const Properties = () => {
       featured: true,
       rating: 5.0,
       investors: 42,
-      image: "/src/assets/images/7.jpeg",
+      image: "/img/7.jpeg",
       tags: ["Ocean View", "Exclusive", "New Development"],
     },
     {
@@ -148,7 +148,7 @@ const Properties = () => {
       featured: false,
       rating: 4.5,
       investors: 15,
-      image: "/src/assets/images/8.jpeg",
+      image: "/img/8.jpeg",
       tags: ["Smart Home", "Secure", "Capital City"],
     },
   ];
