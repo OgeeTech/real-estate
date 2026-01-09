@@ -149,12 +149,11 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
   }, [isMenuOpen]);
@@ -169,104 +168,91 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
   return (
     <>
       <nav
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300
+        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300
         ${
           isScrolled
-            ? "bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl shadow-md"
-            : "bg-white/80 dark:bg-slate-950/80 backdrop-blur-md"
-        } border-b border-slate-200/30 dark:border-slate-800/40`}
+            ? "bg-white/95 dark:bg-slate-950/95 shadow-md backdrop-blur"
+            : "bg-white dark:bg-slate-950"
+        }`}
       >
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between">
+          {/* LOGO */}
+          <div className="flex items-center gap-2 min-w-0">
             <img
               src="/img/logo1.png"
               alt="Logo"
-              className="w-10 h-10 rounded-lg object-cover"
+              className="w-9 h-9 object-contain flex-shrink-0"
             />
-            <div className="leading-none">
-              <h1 className="text-xl font-black text-slate-900 dark:text-white">
-                Build
-                <span className="text-blue-600">vest</span>
-              </h1>
-              <span className="text-[10px] tracking-widest text-slate-400 uppercase">
-                Real Estate
-              </span>
-            </div>
-          </a>
+            <span className="text-lg font-black text-slate-900 dark:text-white truncate">
+              Build<span className="text-blue-600">vest</span>
+            </span>
+          </div>
 
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-10">
-            <div className="flex gap-8">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-blue-600 transition"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
+          {/* DESKTOP MENU */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-blue-600"
+              >
+                {item.label}
+              </a>
+            ))}
 
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-900"
-            >
+            <button onClick={toggleTheme} className="p-2">
               {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
             </button>
 
-            <button className="px-6 py-3 bg-blue-600 text-white text-sm font-bold rounded-xl hover:shadow-lg transition">
-              <span className="flex items-center gap-2">
-                Join Waitlist <ChevronRight size={16} />
-              </span>
+            <button className="px-5 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-lg">
+              Join Waitlist
             </button>
           </div>
 
-          {/* Mobile Actions */}
-          <div className="lg:hidden flex items-center gap-3">
+          {/* MOBILE CONTROLS */}
+          <div className="lg:hidden flex items-center gap-2">
             <button onClick={toggleTheme} className="p-2">
               {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
             </button>
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-900"
+              className="p-2 rounded-md bg-slate-100 dark:bg-slate-900"
             >
               {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu (Animated) */}
+        {/* MOBILE MENU */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out
-          ${isMenuOpen ? "max-h-[500px]" : "max-h-0"}`}
+          className={`lg:hidden overflow-hidden transition-all duration-300
+          ${isMenuOpen ? "max-h-[400px]" : "max-h-0"}`}
         >
-          <div className="px-6 py-8 space-y-6 bg-white dark:bg-slate-950 border-t dark:border-slate-800">
+          <div className="px-4 py-6 space-y-5 bg-white dark:bg-slate-950 border-t">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="block text-lg font-semibold text-slate-700 dark:text-slate-300"
+                className="block text-base font-semibold text-slate-700 dark:text-slate-300"
               >
                 {item.label}
               </a>
             ))}
 
-            <button className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl">
+            <button className="w-full py-3 bg-blue-600 text-white font-bold rounded-lg">
               Join Waitlist
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Overlay */}
+      {/* OVERLAY */}
       {isMenuOpen && (
         <div
           onClick={() => setIsMenuOpen(false)}
-          className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-40 bg-black/30 lg:hidden"
         />
       )}
     </>
