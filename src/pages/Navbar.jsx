@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Sun, Moon, Menu, X, ChevronRight } from "lucide-react";
 
-const Navbar = ({ isDarkMode, toggleTheme }) => {
+const Navbar = ({ isDarkMode, toggleTheme, onOpenModal }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -16,7 +16,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
   }, [isMenuOpen]);
 
   const navItems = [
-    { label: "Features", href: "#features" },
+    { label: "Home", href: "#" },
     { label: "How It Works", href: "#how-it-works" },
     { label: "Properties", href: "#properties" },
     { label: "FAQ", href: "#faq" },
@@ -57,11 +57,14 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
               </a>
             ))}
 
-            <button onClick={toggleTheme} className="p-2">
+            {/* <button onClick={toggleTheme} className="p-2">
               {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+            </button> */}
 
-            <button className="px-5 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-lg">
+            <button
+              onClick={onOpenModal}
+              className="px-5 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-lg"
+            >
               Join Waitlist
             </button>
           </div>

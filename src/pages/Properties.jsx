@@ -322,7 +322,10 @@ const Properties = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-blue-50/20 to-white dark:from-slate-950 dark:via-slate-900/20 dark:to-slate-950">
+    <div
+      id="properties"
+      className="min-h-screen bg-gradient-to-b from-white via-blue-50/20 to-white dark:from-slate-950 dark:via-slate-900/20 dark:to-slate-950"
+    >
       {/* Hero Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0">

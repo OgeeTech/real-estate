@@ -1,23 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../pages/Navbar";
 import Hero from "../pages/Hero";
 import HowItWorks from "../pages/HowItWorks";
 import Properties from "../pages/Properties";
 import FAQ from "../pages/FAQ";
 import Footer from "../pages/Footer";
-// Import other sections...
+import StartInvestModal from "../components/StartInvestModal";
+import ScrollToTop from "./ScrollToTop";
 
 const LandingPage = () => {
+  // 1. State for the Start Investing (Waitlist) Modal
+  const [openModal, setOpenModal] = useState(false);
+
+  // 2. State for the How It Works Video Modal
+  const [openVideo, setOpenVideo] = useState(false);
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
-      <Navbar />
+      {/* Pass onOpenModal to Navbar so the 'Join Waitlist' button works */}
+      <Navbar onOpenModal={() => setOpenModal(true)} />
+
       <main className="w-full overflow-x-hidden">
-        <Hero />
+        {/* 3. Pass ALL required props to Hero */}
+        <Hero
+          onOpenModal={() => setOpenModal(true)}
+          openVideo={openVideo}
+          setOpenVideo={setOpenVideo}
+        />
+
         <HowItWorks />
         <Properties />
         <FAQ />
         <Footer />
       </main>
+
+      {/* Waitlist Modal */}
+      <StartInvestModal
+        isOpen={openModal}
+        onClose={() => setOpenModal(false)}
+      />
+
+      <ScrollToTop />
     </div>
   );
 };

@@ -2,13 +2,15 @@ import React from "react";
 // 1. Added necessary icon imports
 import {
   Shield,
+  Play,
   Users,
   TrendingUp,
   ArrowRight,
   ChevronRight,
 } from "lucide-react";
+import HowItWorksVideoModal from "../components/HowITWorksVideoModal";
 
-const Hero = () => {
+const Hero = ({ onOpenModal, openVideo, setOpenVideo }) => {
   const features = [
     {
       icon: Shield,
@@ -89,7 +91,10 @@ const Hero = () => {
           {/* Action Buttons */}
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 hover:scale-[1.02] active:scale-95 overflow-hidden">
+            <button
+              onClick={onOpenModal}
+              className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 hover:scale-[1.02] active:scale-95 overflow-hidden"
+            >
               <span className="relative z-10 flex items-center justify-center gap-3">
                 Start Investing Now
                 <ArrowRight
@@ -101,35 +106,71 @@ const Hero = () => {
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:translate-x-full transition-transform duration-1000"></span>
             </button>
 
-            <button className="px-8 py-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-slate-300/50 dark:border-slate-700/50 text-slate-900 dark:text-white font-semibold rounded-xl hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg transition-all duration-300 group">
-              <span className="flex items-center justify-center gap-3">
-                <span>How It Works</span>
-                <ChevronRight
-                  size={20}
-                  className="group-hover:translate-x-1 transition-transform"
-                />
+            <button
+              onClick={() => setOpenVideo(true)}
+              className="group flex items-center gap-3 px-6 py-4 bg-white/10 dark:bg-slate-900/40 backdrop-blur-sm border border-slate-200 dark:border-slate-800 rounded-full hover:bg-white dark:hover:bg-slate-800 transition-all duration-300 shadow-sm"
+            >
+              {/* Modernized Play Icon */}
+              <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary">
+                <Play size={14} fill="currentColor" className="ml-0.5" />
+                {/* Pulsing Ring */}
+                <span className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
+              </div>
+
+              <span className="text-sm font-bold text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">
+                How It Works
               </span>
             </button>
           </div>
 
+          {/* Video Modal */}
+          <HowItWorksVideoModal
+            isOpen={openVideo}
+            onClose={() => setOpenVideo(false)}
+          />
           {/* Trust Indicators */}
           <div className="pt-8 border-t border-slate-200 dark:border-slate-800">
-            <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-6 text-center lg:text-left">
+            <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-6 text-center lg:text-left">
               Secured & Powered by
             </p>
-            {/* <div className="flex flex-wrap justify-center lg:justify-start gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500"> */}
-            {/* Simplified partner layout for better look */}
-            {/* {["Paystack", "Stripe", "Flutterwave", "PayPal"].map(
-                (partner) => (
-                  <span
-                    key={partner}
-                    className="text-sm font-black text-slate-400 dark:text-slate-600"
-                  >
-                    {partner}
-                  </span>
-                )
-              )}
-            </div> */}
+
+            <div className="flex flex-wrap justify-center lg:justify-start items-center gap-8 md:gap-12 opacity-50 grayscale hover:opacity-100 transition-all duration-500">
+              {/* Paystack */}
+              <div className="h-6 w-auto">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Paystack_Logo.png"
+                  alt="Paystack"
+                  className="h-full object-contain dark:invert"
+                />
+              </div>
+
+              {/* Stripe */}
+              <div className="h-6 w-auto">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg"
+                  alt="Stripe"
+                  className="h-full object-contain dark:invert"
+                />
+              </div>
+
+              {/* Flutterwave */}
+              <div className="h-5 w-auto">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flutterwave_Logo.png/1200px-Flutterwave_Logo.png"
+                  alt="Flutterwave"
+                  className="h-full object-contain dark:invert"
+                />
+              </div>
+
+              {/* PayPal */}
+              <div className="h-6 w-auto">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg"
+                  alt="PayPal"
+                  className="h-full object-contain dark:invert"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
