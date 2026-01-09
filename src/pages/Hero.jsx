@@ -108,17 +108,24 @@ const Hero = ({ onOpenModal, openVideo, setOpenVideo }) => {
 
             <button
               onClick={() => setOpenVideo(true)}
-              className="group flex items-center gap-3 px-6 py-4 bg-white/10 dark:bg-slate-900/40 backdrop-blur-sm border border-slate-200 dark:border-slate-800 rounded-full hover:bg-white dark:hover:bg-slate-800 transition-all duration-300 shadow-sm"
+              className="group relative px-8 py-4 bg-white/80 dark:bg-slate-900/40 backdrop-blur-sm border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-95 overflow-hidden"
             >
-              {/* Modernized Play Icon */}
-              <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary">
-                <Play size={14} fill="currentColor" className="ml-0.5" />
-                {/* Pulsing Ring */}
-                <span className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
-              </div>
+              <span className="relative z-10 flex items-center justify-center gap-3">
+                {/* Modernized Play Icon */}
+                <div className="relative flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary">
+                  <Play size={12} fill="currentColor" className="ml-0.5" />
+                  {/* Pulsing Ring */}
+                  <span className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
+                </div>
 
-              <span className="text-sm font-bold text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors">
-                How It Works
+                <span className="text-sm transition-colors group-hover:text-primary">
+                  How It Works
+                </span>
+
+                <ChevronRight
+                  size={20}
+                  className="text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-transform"
+                />
               </span>
             </button>
           </div>

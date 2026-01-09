@@ -71,9 +71,9 @@ const Navbar = ({ isDarkMode, toggleTheme, onOpenModal }) => {
 
           {/* MOBILE CONTROLS */}
           <div className="lg:hidden flex items-center gap-2">
-            <button onClick={toggleTheme} className="p-2">
+            {/* <button onClick={toggleTheme} className="p-2">
               {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+            </button> */}
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
