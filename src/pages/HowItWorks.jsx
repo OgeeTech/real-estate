@@ -53,15 +53,15 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        {/* FLOW STEPS */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
+        {/* FLOW STEPS - items-stretch ensures all children share the same height */}
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-stretch">
           {steps.map((step, index) => (
-            <div key={index} className="relative group">
-              {/* CARD */}
-              <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition-all duration-300">
+            <div key={index} className="relative group flex">
+              {/* CARD - h-full makes it fill the available vertical space */}
+              <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500 transition-all duration-300 w-full h-full">
                 {/* STEP NUMBER */}
-                <div className="mb-4 text-xs font-black tracking-widest text-blue-500">
-                  STEP {index + 1}
+                <div className="mb-4 text-xs font-black tracking-widest text-blue-500 uppercase">
+                  Step {index + 1}
                 </div>
 
                 {/* ICON */}
@@ -82,7 +82,7 @@ const HowItWorks = () => {
 
               {/* FLOW ARROW (except last) */}
               {index !== steps.length - 1 && (
-                <div className="hidden md:flex absolute top-1/2 -right-6 transform -translate-y-1/2">
+                <div className="hidden lg:flex absolute top-1/2 -right-7 transform -translate-y-1/2 z-10">
                   <ArrowRight
                     size={20}
                     className="text-blue-400 animate-pulse"
