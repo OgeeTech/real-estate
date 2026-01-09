@@ -239,87 +239,174 @@ const Properties = () => {
     { value: "almost", label: "Almost Funded", color: "text-amber-500" },
   ];
 
-  const PropertyCard = ({ property }) => (
-    <div className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:shadow-lg transition-all duration-300">
-      {/* Image */}
-      <div className="relative h-56 bg-slate-100 dark:bg-slate-800">
-        {/* Placeholder image block */}
-        <div className="absolute inset-0 flex items-center justify-center text-slate-400 text-sm">
-          <img
-            src={property.image}
-            alt={property.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-          />
-        </div>
+  const PropertyCard = ({ property }) => {
+    const [isFlipped, setIsFlipped] = useState(false);
 
-        {/* Status */}
-        <span
-          className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold ${
-            property.status === "funding"
-              ? "bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400"
-              : property.status === "almost"
-              ? "bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400"
-              : "bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-400"
+    return (
+      <div className="perspective-1000 h-[520px] w-full group">
+        <div
+          className={`relative w-full h-full transition-all duration-700 preserve-3d ${
+            isFlipped ? "rotate-y-180" : ""
           }`}
         >
-          {property.status === "almost"
-            ? "Almost Funded"
-            : property.status === "funding"
-            ? "Funding"
-            : "Available"}
-        </span>
+          {/* --- FRONT OF CARD --- */}
+          <div className="absolute inset-0 backface-hidden bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+            {/* Image */}
+            <div className="relative h-56 bg-slate-100 dark:bg-slate-800">
+              <img
+                src={property.image}
+                alt={property.title}
+                className="w-full h-full object-cover"
+              />
+              <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                {property.status.toUpperCase()}
+              </span>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 space-y-4">
+              <div>
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white leading-tight">
+                  {property.title}
+                </h3>
+                <div className="flex items-center gap-1 text-sm text-slate-500 mt-1">
+                  <MapPin size={14} /> {property.location}
+                </div>
+              </div>
+
+              <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
+                <span className="flex items-center gap-1">
+                  <Bed size={14} /> {property.bedrooms} Beds
+                </span>
+                <span className="flex items-center gap-1">
+                  <Bath size={14} /> {property.bathrooms} Baths
+                </span>
+                <span className="flex items-center gap-1">
+                  <Maximize2 size={14} /> {property.sqm} sqm
+                </span>
+              </div>
+
+              {/* Progress */}
+              <div>
+                <div className="flex justify-between text-xs mb-1 text-slate-500">
+                  <span>{property.fundingProgress}% funded</span>
+                  <span>{property.investors} investors</span>
+                </div>
+                <div className="h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-blue-600 transition-all duration-700"
+                    style={{ width: `${property.fundingProgress}%` }}
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-between items-end pt-3 border-t border-slate-100 dark:border-slate-800">
+                <div>
+                  <p className="text-xs text-slate-500 font-bold tracking-wider uppercase">
+                    Min. Investment
+                  </p>
+                  <p className="text-xl font-bold text-blue-600 dark:text-blue-400">
+                    ₦{property.minInvestment.toLocaleString()}
+                  </p>
+                </div>
+                <button
+                  onClick={() => setIsFlipped(true)}
+                  className="px-6 py-2 text-sm font-bold rounded-xl border-2 border-primary text-primary hover:bg-blue-600 hover:text-white transition-all active:scale-95"
+                >
+                  View
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* --- BACK OF CARD --- */}
+          <div className="absolute inset-0 backface-hidden rotate-y-180 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 flex flex-col justify-between shadow-2xl transition-colors duration-300">
+            <div className="space-y-6">
+              {/* Header */}
+              <div className="flex justify-between items-start">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                  Investment Details
+                </h3>
+                <button
+                  onClick={() => setIsFlipped(false)}
+                  className="p-2 text-slate-400 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Metrics Grid */}
+              <div className="grid grid-cols-2 gap-6">
+                <div className="space-y-1">
+                  <p className="text-slate-400 dark:text-slate-500 text-[10px] uppercase tracking-widest font-bold">
+                    Target ROI
+                  </p>
+                  <p className="text-xl font-bold text-green-600 dark:text-green-400">
+                    {property.targetROI}
+                  </p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-slate-400 dark:text-slate-500 text-[10px] uppercase tracking-widest font-bold">
+                    Total Valuation
+                  </p>
+                  <p className="text-xl font-bold text-slate-900 dark:text-white">
+                    ₦{(property.price / 1000000).toFixed(0)}M
+                  </p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-slate-400 dark:text-slate-500 text-[10px] uppercase tracking-widest font-bold">
+                    Hold Period
+                  </p>
+                  <p className="text-lg font-medium text-slate-700 dark:text-slate-300">
+                    6-12 Months
+                  </p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-slate-400 dark:text-slate-500 text-[10px] uppercase tracking-widest font-bold">
+                    Property Type
+                  </p>
+                  <p className="text-lg font-medium text-slate-700 dark:text-slate-300 capitalize">
+                    {property.type}
+                  </p>
+                </div>
+              </div>
+
+              {/* Tags/Highlights */}
+              <div className="space-y-3">
+                <p className="text-slate-400 dark:text-slate-500 text-[10px] uppercase tracking-widest font-bold">
+                  Highlights
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {property.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] font-bold px-2 py-1 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 rounded-md"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* CTA Button matched to Hero style */}
+            <button className="group relative w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 active:scale-95 overflow-hidden">
+              <span className="relative z-10 flex items-center justify-center gap-2 text-sm uppercase tracking-wider">
+                Confirm Investment
+                <TrendingUp
+                  size={18}
+                  className="text-green-400 group-hover:text-green-300 transition-colors"
+                />
+              </span>
+
+              {/* Shine effect to match Hero button */}
+              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:translate-x-full transition-transform duration-1000"></span>
+            </button>
+          </div>
+        </div>
       </div>
-
-      {/* Content */}
-      <div className="p-6 space-y-4">
-        {/* Title */}
-        <div>
-          <h3 className="text-lg font-semibold text-slate-900 dark:text-white leading-tight">
-            {property.title}
-          </h3>
-          <div className="flex items-center gap-1 text-sm text-slate-500 dark:text-slate-400 mt-1">
-            <MapPin size={14} />
-            {property.location}
-          </div>
-        </div>
-
-        {/* Specs */}
-        <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
-          <span>{property.bedrooms} Beds</span>
-          <span>{property.bathrooms} Baths</span>
-          <span>{property.sqm.toLocaleString()} sqm</span>
-        </div>
-
-        {/* Progress */}
-        <div>
-          <div className="flex justify-between text-xs mb-1 text-slate-500">
-            <span>{property.fundingProgress}% funded</span>
-            <span>{property.investors} investors</span>
-          </div>
-          <div className="h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full">
-            <div
-              className="h-full bg-blue-600 rounded-full transition-all duration-700"
-              style={{ width: `${property.fundingProgress}%` }}
-            />
-          </div>
-        </div>
-
-        {/* Price */}
-        <div className="flex justify-between items-end pt-3 border-t border-slate-100 dark:border-slate-800">
-          <div>
-            <p className="text-xs text-slate-500">Min. Investment</p>
-            <p className="text-lg font-semibold text-blue-600 dark:text-blue-400">
-              ₦{property.minInvestment.toLocaleString()}
-            </p>
-          </div>
-
-          <button className="px-4 py-2 text-sm font-medium rounded-lg border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition">
-            View
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div
