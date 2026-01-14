@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Navbar from "../pages/Navbar";
 import Hero from "../pages/Hero";
 import HowItWorks from "../pages/HowItWorks";
-import Properties from "../pages/Properties";
 import FAQ from "../pages/FAQ";
 import Footer from "../pages/Footer";
 import StartInvestModal from "../components/StartInvestModal";
 import ScrollToTop from "./ScrollToTop";
+import Investment from "../pages/Investment";
 
 const LandingPage = () => {
   // 1. State for the Start Investing (Waitlist) Modal
@@ -29,7 +29,7 @@ const LandingPage = () => {
         />
 
         <HowItWorks />
-        <Properties />
+        {/* <Investment /> */}
         <FAQ />
         <Footer />
       </main>

@@ -18,7 +18,7 @@ const Navbar = ({ isDarkMode, toggleTheme, onOpenModal }) => {
   const navItems = [
     { label: "Home", href: "#" },
     { label: "How It Works", href: "#how-it-works" },
-    { label: "Properties", href: "#properties" },
+    // { label: "Properties", href: "#properties" },
     { label: "FAQ", href: "#faq" },
   ];
 
