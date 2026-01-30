@@ -10,16 +10,16 @@ const Footer = () => {
             <div className="flex items-center gap-2">
               <img
                 src="/img/logo1.png"
-                alt="Buildvest"
+                alt="propatiz"
                 className="w-15 h-10 object-contain"
               />
               <span className="text-lg font-black text-slate-900 dark:text-white tracking-tight">
-                Build<span className="text-blue-600">vest</span>
+                propatiz
               </span>
             </div>
 
             <p className="text-sm leading-relaxed max-w-sm">
-              Buildvest enables smart group ownership of high-value real estate,
+              propatiz enables smart group ownership of high-value real estate,
               making property investment accessible, transparent, and secure.
             </p>
           </div>
@@ -36,17 +36,13 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600">
-                  Features
+                <a href="#how-it-works" className="hover:text-blue-600">
+                  How it works
                 </a>
               </li>
+
               <li>
-                <a href="#" className="hover:text-blue-600">
-                  Properties
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-blue-600">
+                <a href="#faq" className="hover:text-blue-600">
                   FAQ
                 </a>
               </li>
@@ -84,7 +80,7 @@ const Footer = () => {
       <div className="py-6 text-center text-xs md:text-sm">
         © 2026{" "}
         <span className="font-semibold text-slate-700 dark:text-slate-300">
-          Buildvest
+          propatiz
         </span>
         . All rights reserved.
       </div>

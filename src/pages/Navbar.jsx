@@ -16,7 +16,7 @@ const Navbar = ({ isDarkMode, toggleTheme, onOpenModal }) => {
   }, [isMenuOpen]);
 
   const navItems = [
-    { label: "Home", href: "#" },
+    { label: "Home", href: "#home" },
     { label: "How It Works", href: "#how-it-works" },
     // { label: "Properties", href: "#properties" },
     { label: "FAQ", href: "#faq" },
@@ -25,10 +25,10 @@ const Navbar = ({ isDarkMode, toggleTheme, onOpenModal }) => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300
+        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 border-b border-transparent
         ${
           isScrolled
-            ? "bg-white/95 dark:bg-slate-950/95 shadow-md backdrop-blur"
+            ? "bg-white/90 dark:bg-slate-950/90 shadow-md backdrop-blur-md border-slate-200 dark:border-slate-800"
             : "bg-white dark:bg-slate-950"
         }`}
       >
@@ -41,7 +41,7 @@ const Navbar = ({ isDarkMode, toggleTheme, onOpenModal }) => {
               className="w-9 h-9 object-contain flex-shrink-0"
             />
             <span className="text-lg font-black text-slate-900 dark:text-white truncate">
-              Build<span className="text-blue-600">vest</span>
+              Propa<span className="text-blue-600">tiz</span>
             </span>
           </div>
 
@@ -51,70 +51,87 @@ const Navbar = ({ isDarkMode, toggleTheme, onOpenModal }) => {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-blue-600"
+                className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors"
               >
                 {item.label}
               </a>
             ))}
 
-            {/* <button onClick={toggleTheme} className="p-2">
-              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button> */}
-
-            <button
-              onClick={onOpenModal}
-              className="px-5 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-lg"
+            <a
+              href="https://forms.gle/b89FiuZNkZ8ZFNRw6"
+              className="px-5 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow"
             >
               Join Waitlist
-            </button>
+            </a>
           </div>
 
-          {/* MOBILE CONTROLS */}
+          {/* MOBILE TOGGLE (Just the Menu Icon) */}
           <div className="lg:hidden flex items-center gap-2">
-            {/* <button onClick={toggleTheme} className="p-2">
-              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-            </button> */}
-
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-md bg-slate-100 dark:bg-slate-900"
+              onClick={() => setIsMenuOpen(true)}
+              className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-900 text-slate-700 dark:text-slate-200 transition-colors"
             >
-              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
-          </div>
-        </div>
-
-        {/* MOBILE MENU */}
-        <div
-          className={`lg:hidden overflow-hidden transition-all duration-300
-          ${isMenuOpen ? "max-h-[400px]" : "max-h-0"}`}
-        >
-          <div className="px-4 py-6 space-y-5 bg-white dark:bg-slate-950 border-t">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="block text-base font-semibold text-slate-700 dark:text-slate-300"
-              >
-                {item.label}
-              </a>
-            ))}
-
-            <button className="w-full py-3 bg-blue-600 text-white font-bold rounded-lg">
-              Join Waitlist
+              <Menu size={24} />
             </button>
           </div>
         </div>
       </nav>
 
-      {/* OVERLAY */}
-      {isMenuOpen && (
-        <div
-          onClick={() => setIsMenuOpen(false)}
-          className="fixed inset-0 z-40 bg-black/30 lg:hidden"
-        />
-      )}
+      {/* --- MOBILE DRAWER & OVERLAY --- */}
+
+      {/* 1. Backdrop Overlay with Blur */}
+      <div
+        className={`fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm lg:hidden transition-opacity duration-300 ease-in-out
+        ${isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        onClick={() => setIsMenuOpen(false)}
+      />
+
+      {/* 2. Sliding Sidebar (Right Side) */}
+      <div
+        className={`fixed inset-y-0 right-0 z-[70] w-[280px] bg-white dark:bg-slate-950 shadow-2xl transform transition-transform duration-300 cubic-bezier(0.4, 0, 0.2, 1) lg:hidden flex flex-col
+        ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+      >
+        {/* Drawer Header */}
+        <div className="flex items-center justify-between p-5 border-b border-slate-100 dark:border-slate-800">
+          <span className="font-bold text-lg text-slate-900 dark:text-white">
+            Menu
+          </span>
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-900 text-slate-500 transition-colors"
+          >
+            <X size={22} />
+          </button>
+        </div>
+
+        {/* Drawer Links */}
+        <div className="flex-1 overflow-y-auto py-6 px-5 space-y-2">
+          {navItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={() => setIsMenuOpen(false)}
+              className="flex items-center justify-between p-3 rounded-xl text-base font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 hover:text-blue-600 transition-all group"
+            >
+              {item.label}
+              <ChevronRight
+                size={16}
+                className="text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-transform"
+              />
+            </a>
+          ))}
+        </div>
+
+        {/* Drawer Footer (CTA) */}
+        <div className="p-5 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
+          <a
+            href="https://forms.gle/b89FiuZNkZ8ZFNRw6"
+            className="flex items-center justify-center w-full py-3.5 bg-blue-600 text-white font-bold rounded-xl shadow-lg shadow-blue-600/20 active:scale-95 transition-transform"
+          >
+            Join Waitlist
+          </a>
+        </div>
+      </div>
     </>
   );
 };

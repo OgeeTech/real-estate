@@ -41,7 +41,7 @@ const FAQ = () => {
 
           <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800">
             <img
-              src="/img/faq3.jpeg"
+              src="/img/faq2.jpeg"
               alt="Real Estate Investment"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
