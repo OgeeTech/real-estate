@@ -40,9 +40,8 @@ const HowItWorks = () => {
     },
     {
       id: 3,
-      title: "Invest Fractionally",
-      description:
-        "Buy a fraction of a property. <100% ownership adds you to a group.",
+      title: "Invest Partlly",
+      description: "Buy a fraction of a property and be added to a group.",
       details:
         "If you buy 100%, you have sole control. If you buy less, you are automatically added to a private Chat Group with other co-owners. A Staff Mediator is present in every group to maintain order and facilitate communication.",
       icon: <FaChartPie />,
